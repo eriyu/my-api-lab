@@ -8,6 +8,17 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+// load mongoose package
+var mongoose = require('mongoose');
+
+// Use native Node promises
+mongoose.Promise = global.Promise;
+
+// connect to MongoDB
+mongoose.connect('mongodb://lala:ithome@ds033966.mlab.com:33966/lala-travel-api')
+    .then(() => console.log('connection succesful'))
+    .catch((err) => console.error(err));
+
 var app = express();
 
 // view engine setup
