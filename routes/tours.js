@@ -27,4 +27,12 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
+/* PUT /tours/:id 單筆修改行程 */
+router.put('/:id', function(req, res, next) {
+  Tour.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
 module.exports = router;
