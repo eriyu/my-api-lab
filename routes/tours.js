@@ -11,4 +11,12 @@ router.get('/', function(req, res, next) {
   });
 });
 
+/* POST /tours 單筆新增行程 */
+router.post('/', function(req, res, next) {
+  Tour.create(req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
 module.exports = router;
