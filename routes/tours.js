@@ -35,4 +35,12 @@ router.put('/:id', function(req, res, next) {
   });
 });
 
+/* DELETE /todos/:id 單筆刪除行程 */
+router.delete('/:id', function(req, res, next) {
+  Tour.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
 module.exports = router;
