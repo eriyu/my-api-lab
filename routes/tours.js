@@ -19,4 +19,12 @@ router.post('/', function(req, res, next) {
   });
 });
 
+/* GET /tours/id 單筆檢視行程 */
+router.get('/:id', function(req, res, next) {
+  Tour.findById(req.params.id, function (err, post) {
+    if (err) return next(err);
+    res.json(post);
+  });
+});
+
 module.exports = router;
