@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var tours = require('./routes/tours');
+var tickets = require('./routes/tickets');
 
 // load mongoose package
 var mongoose = require('mongoose');
@@ -19,6 +20,13 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://lala:ithome@ds033966.mlab.com:33966/lala-travel-api')
     .then(() => console.log('connection succesful'))
     .catch((err) => console.error(err));
+
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+};
 
 var app = express();
 
@@ -33,10 +41,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(allowCrossDomain);
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/tours', tours);
+app.use('/tickets', tickets);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
