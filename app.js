@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var tours = require('./routes/tours');
 var tickets = require('./routes/tickets');
+var rates = require('./routes/rates');
 
 // load mongoose package
 var mongoose = require('mongoose');
@@ -47,6 +48,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/tours', tours);
 app.use('/tickets', tickets);
+app.use('/rates', rates);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
